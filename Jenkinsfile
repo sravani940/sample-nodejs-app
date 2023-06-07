@@ -14,18 +14,18 @@ pipeline {
         
         stage('Install Dependencies'){
             steps {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
          stage('Install pm2'){
             steps {
-                bat 'npm install pm2 -g'
+                sh 'npm install pm2 -g'
             }
         }
         
         stage('Deploy'){
             steps {
-                bat 'pm2 startOrRestart pm2.config.json'
+                sh 'pm2 startOrRestart pm2.config.json'
             }
         }
         
@@ -40,7 +40,7 @@ pipeline {
 		sh 'ansible-vault decrypt --vault-id /tmp/vault-id /opt/jenkins/workspace/VisOps/t058/sample-nodejs-app/deploy-on-nginx/master.pem'
                 sh 'chmod 400 /opt/jenkins/workspace/VisOps/t058/sample-nodejs-app/deploy-on-nginx/master.pem'
 
-                sh 'ansible-playbook -i inventory deploy-index.yml'
+                sh 'ansible-playbook -i inventory deploy-index.yaml'
             }
         }
    } 

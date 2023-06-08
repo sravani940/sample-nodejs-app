@@ -31,14 +31,14 @@ pipeline {
         
         stage('install') {
             steps {
+
+		   sh 'ansible-vault decrypt --vault-id /tmp/vault-id /opt/jenkins/workspace/VisOps/t058/sample-nodejs-app/deploy-on-nginx/master.pem'
+                sh 'chmod 400 /opt/jenkins/workspace/VisOps/t058/sample-nodejs-app/deploy-on-nginx/master.pem'
                 sh "ansible-playbook -i inventory install-nginx.yml"
             }
         }
         stage('deploy') {
             steps {
-
-		sh 'ansible-vault decrypt --vault-id /tmp/vault-id /opt/jenkins/workspace/VisOps/t058/sample-nodejs-app/deploy-on-nginx/master.pem'
-                sh 'chmod 400 /opt/jenkins/workspace/VisOps/t058/sample-nodejs-app/deploy-on-nginx/master.pem'
 
                 sh 'ansible-playbook -i inventory deploy-index.yaml'
             }

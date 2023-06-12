@@ -12,7 +12,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "node index.js",
     "test": "mocha ./test/test.js"
   },
   "main": "index.js",
@@ -20,5 +19,9 @@
     "test": "test"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://git.cloudavise.com/visops/t058/sample-nodejs-app.git"
+  }
 }
